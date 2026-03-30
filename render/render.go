@@ -271,9 +271,10 @@ func drawHeader(screen *ebiten.Image, b *board.Board, elapsed int, difficulty st
 	drawRect(screen, bx, by, float32(bw), float32(bh), colorBtnBg)
 	strokeRect(screen, bx, by, float32(bw), float32(bh), 2, colorBoxLine)
 	face := ":-)"
-	if b.GameState == board.StateLost {
+	switch b.GameState {
+	case board.StateLost:
 		face = "X-("
-	} else if b.GameState == board.StateWon {
+	case board.StateWon:
 		face = "B-)"
 	}
 	text.Draw(screen, face, fontSmall, int(bx)+5, int(by)+20, colorTitle)
